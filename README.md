@@ -7,6 +7,7 @@ A small Next.js app for collecting date-specific availability from a group and s
 - Create a group with a name and either a date range or specific dates
 - Share one link with the group
 - Let each person submit a display name and mark which dates they are busy
+- Switch between list and calendar layouts on the shared group page
 - Show common dates and per-date availability counts
 - Let the same browser update its response later without full authentication
 
