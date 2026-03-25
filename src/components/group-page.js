@@ -547,61 +547,67 @@ function CalendarWorkspace({
                 </p>
               </div>
 
-              <div className="grid grid-cols-7 gap-2 text-center text-xs font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
-                {WEEKDAY_LABELS.map((label) => (
-                  <div key={`${month.key}-${label}`}>{label}</div>
-                ))}
-              </div>
+              <div className="-mx-1 overflow-x-auto pb-2">
+                <div className="min-w-[42rem] px-1 sm:min-w-0">
+                  <div className="grid grid-cols-7 gap-2 text-center text-xs font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
+                    {WEEKDAY_LABELS.map((label) => (
+                      <div key={`${month.key}-${label}`}>{label}</div>
+                    ))}
+                  </div>
 
-              <div className="grid grid-cols-7 gap-2">
-                {month.cells.map((cell) =>
-                  cell.isPadding ? (
-                    <div key={cell.id} className="aspect-square rounded-2xl" />
-                  ) : (
-                    <button
-                      key={cell.id}
-                      type="button"
-                      disabled={!cell.summary}
-                      onClick={() => {
-                        if (cell.summary) {
-                          onToggleDate(cell.date);
-                        }
-                      }}
-                      className={`min-h-24 rounded-2xl p-2 text-left transition sm:min-h-[8.5rem] xl:min-h-[9.5rem] ${getCalendarCellClass(
-                        cell.summary,
-                        group.responseCount,
-                        busyDateSet.has(cell.date),
-                      )}`}
-                    >
-                      <div className="flex items-start justify-between gap-2">
-                        <span className="text-sm font-semibold">{cell.day}</span>
-                        {busyDateSet.has(cell.date) ? (
-                          <span className="rounded-full bg-[var(--danger)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white">
-                            Busy
-                          </span>
-                        ) : cell.summary?.allAvailable ? (
-                          <span className="rounded-full bg-[var(--success)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white">
-                            Open
-                          </span>
-                        ) : null}
-                      </div>
-
-                      {cell.summary ? (
-                        <div className="mt-3 space-y-1 text-[11px] leading-4">
-                          <p>{cell.summary.availableCount} available</p>
-                          <p>{cell.summary.busyCount} busy</p>
-                          {cell.summary.allAvailable ? (
-                            <p className="font-semibold text-[var(--success)]">
-                              Everyone is free
-                            </p>
-                          ) : null}
-                        </div>
+                  <div className="mt-2 grid grid-cols-7 gap-2">
+                    {month.cells.map((cell) =>
+                      cell.isPadding ? (
+                        <div key={cell.id} className="aspect-square rounded-2xl" />
                       ) : (
-                        <p className="mt-3 text-[11px] leading-4">Not in group</p>
-                      )}
-                    </button>
-                  ),
-                )}
+                        <button
+                          key={cell.id}
+                          type="button"
+                          disabled={!cell.summary}
+                          onClick={() => {
+                            if (cell.summary) {
+                              onToggleDate(cell.date);
+                            }
+                          }}
+                          className={`min-h-[6.75rem] rounded-2xl p-2 text-left transition sm:min-h-[8.5rem] xl:min-h-[9.5rem] ${getCalendarCellClass(
+                            cell.summary,
+                            group.responseCount,
+                            busyDateSet.has(cell.date),
+                          )}`}
+                        >
+                          <div className="flex items-start justify-between gap-2">
+                            <span className="text-sm font-semibold">{cell.day}</span>
+                            {busyDateSet.has(cell.date) ? (
+                              <span className="rounded-full bg-[var(--danger)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white">
+                                Busy
+                              </span>
+                            ) : cell.summary?.allAvailable ? (
+                              <span className="rounded-full bg-[var(--success)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white">
+                                Open
+                              </span>
+                            ) : null}
+                          </div>
+
+                          {cell.summary ? (
+                            <div className="mt-3 space-y-1 text-[11px] leading-4">
+                              <p>{cell.summary.availableCount} available</p>
+                              <p>{cell.summary.busyCount} busy</p>
+                              {cell.summary.allAvailable ? (
+                                <p className="font-semibold text-[var(--success)]">
+                                  Everyone is free
+                                </p>
+                              ) : null}
+                            </div>
+                          ) : (
+                            <p className="mt-3 text-[11px] leading-4">
+                              Not in group
+                            </p>
+                          )}
+                        </button>
+                      ),
+                    )}
+                  </div>
+                </div>
               </div>
             </section>
           ))}
