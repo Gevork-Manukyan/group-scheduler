@@ -1,20 +1,173 @@
 @import "tailwindcss";
 
-summary::-webkit-details-marker {
-  display: none
+:root {
+  --bg: #f4efe6;
+  --bg-strong: #efe5d4;
+  --panel: rgba(255, 255, 255, 0.8);
+  --panel-strong: rgba(255, 255, 255, 0.94);
+  --panel-soft: #f6f1e8;
+  --text: #1f2937;
+  --muted: #667085;
+  --line: #decfb7;
+  --accent: #b45309;
+  --accent-strong: #92400e;
+  --accent-soft: #fff0d6;
+  --success: #136f3a;
+  --success-soft: #e7f8ee;
+  --success-line: #b9e5c9;
+  --danger: #b42318;
+  --danger-soft: #feeceb;
+  --danger-line: #f5c8c5;
 }
 
-.checker-background::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-image: linear-gradient(#e6e6e690 1px, transparent 1px),
-    linear-gradient(90deg, #e6e6e690 1px, transparent 1px);
-  background-size: 3.7em 3.7em;
-  mask-image: radial-gradient(ellipse at 50% 40%, black 0%, transparent 55%);
-  z-index: -1;
-  background-position-x: center;
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(255, 250, 240, 0.95), transparent 38%),
+    radial-gradient(circle at right 20%, rgba(245, 208, 146, 0.34), transparent 26%),
+    linear-gradient(180deg, var(--bg) 0%, #f7f5ef 100%);
+  color: var(--text);
+  font-family: "Manrope", sans-serif;
+}
+
+::selection {
+  background: rgba(180, 83, 9, 0.18);
+}
+
+.panel {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  border-radius: 2rem;
+  padding: 1.5rem;
+  box-shadow: 0 18px 50px rgba(95, 74, 39, 0.08);
+}
+
+.panel-strong {
+  border: 1px solid rgba(168, 124, 62, 0.2);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 251, 245, 0.98) 100%);
+  border-radius: 2rem;
+  padding: 1.75rem;
+  box-shadow:
+    0 24px 80px rgba(95, 74, 39, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.input-field {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: white;
+  padding: 0.9rem 1rem;
+  color: var(--text);
+  outline: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.input-field:focus {
+  border-color: rgba(180, 83, 9, 0.65);
+  box-shadow: 0 0 0 4px rgba(180, 83, 9, 0.14);
+}
+
+.button-primary,
+.button-secondary,
+.chip {
+  border: 0;
+  font: inherit;
+}
+
+.button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #c26b16 0%, #9a4f0d 100%);
+  color: white;
+  padding: 0.9rem 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  box-shadow: 0 14px 30px rgba(180, 83, 9, 0.24);
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    opacity 150ms ease;
+}
+
+.button-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 34px rgba(180, 83, 9, 0.28);
+}
+
+.button-primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--text);
+  padding: 0.9rem 1.2rem;
+  font-weight: 700;
+  transition:
+    border-color 150ms ease,
+    transform 150ms ease;
+}
+
+.button-secondary:hover {
+  transform: translateY(-1px);
+  border-color: rgba(180, 83, 9, 0.45);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: white;
+  padding: 0.7rem 1rem;
+  color: var(--text);
+  text-align: left;
+  transition:
+    border-color 150ms ease,
+    transform 150ms ease;
+}
+
+.chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(180, 83, 9, 0.45);
+}
+
+.result-pill {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-radius: 1.5rem;
+  border: 1px solid var(--success-line);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.9rem 1rem;
+}
+
+code,
+pre,
+.mono {
+  font-family: "IBM Plex Mono", monospace;
 }
