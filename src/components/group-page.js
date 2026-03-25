@@ -460,42 +460,44 @@ function CalendarWorkspace({
           />
         </div>
 
-        <div className="sticky top-4 z-20 rounded-[1.75rem] border border-[var(--line)] bg-[rgba(255,255,255,0.94)] p-4 shadow-[0_20px_50px_rgba(95,74,39,0.14)] backdrop-blur">
-          <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
-            <div className="grid flex-1 gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
-              <label className="space-y-2">
-                <span className="text-sm font-semibold text-[var(--text)]">
-                  Display name
-                </span>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(event) => onNameChange(event.target.value)}
-                  className="input-field"
-                  placeholder="Your name"
-                  maxLength={50}
-                />
-              </label>
-              <div className="rounded-2xl border border-[var(--line)] bg-[var(--panel-soft)] px-4 py-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">
-                  Your selection
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[var(--text)]">
-                  {busyDates.length} {busyDates.length === 1 ? "busy date" : "busy dates"}
-                </p>
-              </div>
+        <div className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--panel-soft)] p-4 sm:p-5">
+          <label className="space-y-2">
+            <span className="text-sm font-semibold text-[var(--text)]">
+              Display name
+            </span>
+            <input
+              type="text"
+              value={name}
+              onChange={(event) => onNameChange(event.target.value)}
+              className="input-field"
+              placeholder="Your name"
+              maxLength={50}
+            />
+          </label>
+        </div>
+
+        <div className="sticky top-3 z-20 rounded-[1.35rem] border border-[var(--line)] bg-[rgba(255,255,255,0.94)] px-3 py-2.5 shadow-[0_16px_36px_rgba(95,74,39,0.12)] backdrop-blur sm:px-4">
+          <div className="flex items-center justify-between gap-3">
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">
+                Your selection
+              </p>
+              <p className="truncate text-sm font-semibold text-[var(--text)] sm:text-base">
+                {busyDates.length}{" "}
+                {busyDates.length === 1 ? "busy date selected" : "busy dates selected"}
+              </p>
             </div>
 
             <button
               type="submit"
               disabled={isSaving}
-              className="button-primary w-full xl:w-auto xl:min-w-[14.5rem]"
+              className="button-primary shrink-0 whitespace-nowrap px-4 py-2 text-sm sm:min-w-[12rem]"
             >
               {isSaving
                 ? "Saving..."
                 : editor
-                  ? "Update busy dates"
-                  : "Save busy dates"}
+                  ? "Update"
+                  : "Save"}
             </button>
           </div>
         </div>
